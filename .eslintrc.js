@@ -13,7 +13,7 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module'
   },
-  plugins: ['react', '@typescript-eslint', 'simple-import-sort', 'react-native', 'detox'],
+  plugins: ['react', '@typescript-eslint', 'simple-import-sort', 'react-native'],
   rules: {
     'simple-import-sort/exports': 'error',
     'simple-import-sort/imports': 'error',
@@ -28,15 +28,5 @@ module.exports = {
         SwitchCase: 1
       }
     ]
-  },
-  overrides: [
-    {
-      files: ['**/*.spec.js', '**/*.spec.jsx', '**/*.e2e.js', '**/*.test.js'],
-      env: {
-        'detox/detox': true,
-        jest: true
-        // 'jest/globals': true
-      }
-    }
-  ]
+  }
 }

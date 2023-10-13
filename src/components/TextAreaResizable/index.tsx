@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { Platform, TextInput, type NativeSyntheticEvent, type TextInputContentSizeChangeEventData } from 'react-native'
+import { type NativeSyntheticEvent, Platform, TextInput, type TextInputContentSizeChangeEventData } from 'react-native'
 
 export const TextAreaResizable = () => {
   const textareaLineHeight = 18
 
   const [value, setValue] = useState('')
   const [rows, setRows] = useState(2)
-  const [minRows, setMinRows] = useState(2)
-  const [maxRows, setMaxRows] = useState(10)
+  // const [minRows, setMinRows] = useState(2)
+  // const [maxRows, setMaxRows] = useState(10)
+  const minRows = 2
+  const maxRows = 10
   const [minHeight, setMinHeight] = useState(2 * textareaLineHeight)
 
   const handleChange = (event: any) => {

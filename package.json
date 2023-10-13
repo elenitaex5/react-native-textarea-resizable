@@ -2,14 +2,17 @@
   "name": "react-native-textarea-resizable",
   "version": "0.1.0",
   "description": "Textarea component auto resizable. It grows when text is bigger",
-  "main": "lib/commonjs/index",
-  "module": "lib/module/index",
+  "main": "lib/commonjs/index.js",
+  "module": "lib/module/index.js",
   "types": "lib/typescript/src/index.d.ts",
-  "react-native": "src/index",
+  "react-native": "src/index.ts",
   "source": "src/index",
   "files": [
     "src",
     "lib",
+    "!**/__tests__",
+    "!**/__fixtures__",
+    "!**/__mocks__",
     "android",
     "ios",
     "cpp",
@@ -20,9 +23,6 @@
     "!android/gradlew",
     "!android/gradlew.bat",
     "!android/local.properties",
-    "!**/__tests__",
-    "!**/__fixtures__",
-    "!**/__mocks__",
     "!**/.*"
   ],
   "scripts": {
@@ -32,7 +32,8 @@
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "clean": "del-cli lib",
     "prepare": "bob build",
-    "release": "release-it"
+    "release": "release-it",
+    "prepack": "bob build"
   },
   "keywords": [
     "react-native",
@@ -66,7 +67,7 @@
     "prettier": "^2.0.5",
     "react": "18.2.0",
     "react-native": "0.72.5",
-    "react-native-builder-bob": "^0.20.0",
+    "react-native-builder-bob": "^0.20.4",
     "release-it": "^15.0.0",
     "typescript": "^5.0.2"
   },
@@ -147,14 +148,20 @@
     "source": "src",
     "output": "lib",
     "targets": [
-      "commonjs",
-      "module",
       [
-        "typescript",
+        "aar",
         {
-          "project": "tsconfig.build.json"
+          "reverseJetify": true
         }
-      ]
+      ],
+      [
+        "commonjs",
+        {
+          "copyFlow": true
+        }
+      ],
+      "module",
+      "typescript"
     ]
   }
 }

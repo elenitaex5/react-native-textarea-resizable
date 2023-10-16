@@ -26,7 +26,6 @@
     "!**/.*"
   ],
   "scripts": {
-    "example": "yarn workspace react-native-textarea-resizable-example",
     "test": "jest",
     "typecheck": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
@@ -40,7 +39,10 @@
     "ios",
     "android"
   ],
-  "repository": "https://github.com/elenitaex5/react-native-textarea-resizable",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elenitaex5/react-native-textarea-resizable.git"
+  },
   "author": "elenitaex5 <elena.martincastillo@gmail.com> (https://github.com/elenitaex5)",
   "license": "MIT",
   "bugs": {
@@ -149,12 +151,6 @@
     "source": "src",
     "output": "lib",
     "targets": [
-      [
-        "aar",
-        {
-          "reverseJetify": true
-        }
-      ],
       [
         "commonjs",
         {

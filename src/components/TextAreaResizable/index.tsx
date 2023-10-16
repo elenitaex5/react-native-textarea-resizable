@@ -78,6 +78,7 @@ export const TextAreaResizable = (props: TextAreaResizableProps) => {
       textAlignVertical="top"
       onChange={handleChange}
       onContentSizeChange={handleContentSizeChange}
+      {...props}
     />
   )
 }

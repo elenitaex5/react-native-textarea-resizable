@@ -1,23 +1,26 @@
 import React, { useEffect, useState } from 'react'
-import { type NativeSyntheticEvent, Platform, TextInput, type TextInputContentSizeChangeEventData } from 'react-native'
+import { Platform, TextInput, type NativeSyntheticEvent, type TextInputContentSizeChangeEventData, type TextInputProps } from 'react-native'
 
-export const TextAreaResizable = () => {
-  const textareaLineHeight = 18
+const TEXTAREA_LINE_HEIGHT = 18
+
+export interface TextAreaResizableProps extends TextInputProps {
+  minRows?: number
+  maxRows?: number
+}
+
+export const TextAreaResizable = (props: TextAreaResizableProps) => {
+  const { minRows = 1, maxRows = 6 } = props
 
   const [value, setValue] = useState('')
   const [rows, setRows] = useState(2)
-  // const [minRows, setMinRows] = useState(2)
-  // const [maxRows, setMaxRows] = useState(10)
-  const minRows = 2
-  const maxRows = 10
-  const [minHeight, setMinHeight] = useState(2 * textareaLineHeight)
+  const [minHeight, setMinHeight] = useState(2 * TEXTAREA_LINE_HEIGHT)
 
   const handleChange = (event: any) => {
     if (Platform.OS === 'web') {
       const previousRows = event.target.rows
       event.target.rows = minRows
 
-      const currentRows = ~~(event.target.scrollHeight / textareaLineHeight)
+      const currentRows = ~~(event.target.scrollHeight / TEXTAREA_LINE_HEIGHT)
 
       if (currentRows === previousRows) {
         event.target.rows = currentRows
@@ -43,8 +46,8 @@ export const TextAreaResizable = () => {
   const handleContentSizeChange = (e: NativeSyntheticEvent<TextInputContentSizeChangeEventData>) => {
     const currentRows =
       Platform.OS === 'web'
-        ? Math.floor(e.nativeEvent.contentSize.height / textareaLineHeight)
-        : Math.ceil(e.nativeEvent.contentSize.height / textareaLineHeight)
+        ? Math.floor(e.nativeEvent.contentSize.height / TEXTAREA_LINE_HEIGHT)
+        : Math.ceil(e.nativeEvent.contentSize.height / TEXTAREA_LINE_HEIGHT)
 
     if (currentRows !== rows) {
       if (currentRows <= minRows) {
@@ -53,27 +56,25 @@ export const TextAreaResizable = () => {
       if (currentRows >= maxRows) {
         return setRows(maxRows)
       }
-      setRows(e.nativeEvent.contentSize.height / textareaLineHeight)
+      setRows(e.nativeEvent.contentSize.height / TEXTAREA_LINE_HEIGHT)
     }
   }
 
   useEffect(() => {
-    setMinHeight(rows * textareaLineHeight)
+    setMinHeight(rows * TEXTAREA_LINE_HEIGHT)
   }, [rows])
 
   return (
     <TextInput
       style={{
-        borderWidth: 2,
-        borderColor: 'pink',
-        marginTop: 50,
+        ...(props.style as Object),
         padding: 4,
         minHeight
       }}
       multiline={true}
       numberOfLines={Platform.OS === 'web' ? Math.floor(rows) : Math.ceil(rows)}
       value={value}
-      placeholder={'Enter your text here...'}
+      placeholder={props.placeholder}
       textAlignVertical="top"
       onChange={handleChange}
       onContentSizeChange={handleContentSizeChange}

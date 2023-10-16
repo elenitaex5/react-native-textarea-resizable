@@ -1,6 +1,6 @@
 {
   "name": "react-native-textarea-resizable",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Textarea component auto resizable. It grows when text is bigger",
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",

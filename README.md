@@ -21,7 +21,7 @@ import TextAreaResizable from 'react-native-textarea-resizable'
 
 // ...
 
-;<TextAreaResizable />
+<TextAreaResizable />
 ```
 
 ### Props

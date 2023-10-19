@@ -8,14 +8,20 @@ Textarea component auto resizable. It grows when text is bigger
 npm install react-native-textarea-resizable
 ```
 
+or
+
+```sh
+yarn add react-native-textarea-resizable
+```
+
 ## Usage
 
 ```js
-import { multiply } from 'react-native-textarea-resizable';
+import TextAreaResizable from 'react-native-textarea-resizable'
 
 // ...
 
-const result = await multiply(3, 7);
+;<TextAreaResizable />
 ```
 
 ## Contributing
@@ -25,7 +31,3 @@ See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the 
 ## License
 
 MIT
-
----
-
-Made with [create-react-native-library](https://github.com/callstack/react-native-builder-bob)

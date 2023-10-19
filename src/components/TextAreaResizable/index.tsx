@@ -6,10 +6,11 @@ const TEXTAREA_LINE_HEIGHT = 18
 export interface TextAreaResizableProps extends TextInputProps {
   minRows?: number
   maxRows?: number
+  disabled?: boolean
 }
 
 export const TextAreaResizable = (props: TextAreaResizableProps) => {
-  const { minRows = 1, maxRows = 6 } = props
+  const { minRows = 1, maxRows = 6, disabled = false } = props
 
   const [value, setValue] = useState('')
   const [rows, setRows] = useState(2)
@@ -64,12 +65,15 @@ export const TextAreaResizable = (props: TextAreaResizableProps) => {
     setMinHeight(rows * TEXTAREA_LINE_HEIGHT)
   }, [rows])
 
+  const disabledCursor = disabled ? { cursor: 'not-allowed' } : {}
+
   return (
     <TextInput
       style={{
         ...(props.style as Object),
         padding: 4,
-        minHeight
+        minHeight,
+        ...disabledCursor
       }}
       multiline={true}
       numberOfLines={Platform.OS === 'web' ? Math.floor(rows) : Math.ceil(rows)}
@@ -78,6 +82,8 @@ export const TextAreaResizable = (props: TextAreaResizableProps) => {
       textAlignVertical="top"
       onChange={handleChange}
       onContentSizeChange={handleContentSizeChange}
+      editable={props.editable ?? !disabled}
+      placeholderTextColor={props?.placeholderTextColor ?? 'lightgray'}
       {...props}
     />
   )

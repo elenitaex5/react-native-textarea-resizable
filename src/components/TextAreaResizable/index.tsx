@@ -69,6 +69,7 @@ export const TextAreaResizable = (props: TextAreaResizableProps) => {
 
   return (
     <TextInput
+      {...props}
       style={{
         ...(props.style as Object),
         padding: 4,
@@ -84,7 +85,6 @@ export const TextAreaResizable = (props: TextAreaResizableProps) => {
       onContentSizeChange={handleContentSizeChange}
       editable={props.editable ?? !disabled}
       placeholderTextColor={props?.placeholderTextColor ?? 'lightgray'}
-      {...props}
     />
   )
 }

@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { Platform, TextInput, type NativeSyntheticEvent, type TextInputContentSizeChangeEventData, type TextInputProps } from 'react-native'
+import {
+  type NativeSyntheticEvent,
+  Platform,
+  TextInput,
+  type TextInputContentSizeChangeEventData,
+  type TextInputProps,
+  type TextStyle
+} from 'react-native'
 
 const TEXTAREA_LINE_HEIGHT = 18
 
@@ -62,9 +69,9 @@ export const TextAreaResizable = (props: TextAreaResizableProps) => {
   }
 
   useEffect(() => {
-    //@ts-ignore
-    if (props.style?.minHeight && props.style.minHeight > rows * TEXTAREA_LINE_HEIGHT) {
-      return setMinHeight(props.style.minHeight)
+    const style = props.style as TextStyle
+    if (style?.minHeight && typeof style?.minHeight === 'number' && style.minHeight > rows * TEXTAREA_LINE_HEIGHT) {
+      return setMinHeight(style.minHeight)
     }
 
     setMinHeight(rows * TEXTAREA_LINE_HEIGHT)

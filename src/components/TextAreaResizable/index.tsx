@@ -20,7 +20,7 @@ export const TextAreaResizable = (props: TextAreaResizableProps) => {
   const { minRows = 1, maxRows = 6, disabled = false } = props
 
   const [value, setValue] = useState('')
-  const [rows, setRows] = useState(2)
+  const [rows, setRows] = useState(minRows)
   const [minHeight, setMinHeight] = useState(2 * TEXTAREA_LINE_HEIGHT)
 
   const handleChange = (event: any) => {

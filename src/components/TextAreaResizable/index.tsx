@@ -62,6 +62,11 @@ export const TextAreaResizable = (props: TextAreaResizableProps) => {
   }
 
   useEffect(() => {
+    //@ts-ignore
+    if (props.style?.minHeight && props.style.minHeight > rows * TEXTAREA_LINE_HEIGHT) {
+      return setMinHeight(props.style.minHeight)
+    }
+
     setMinHeight(rows * TEXTAREA_LINE_HEIGHT)
   }, [rows])
 

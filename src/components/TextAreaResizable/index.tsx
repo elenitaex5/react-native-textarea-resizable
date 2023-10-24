@@ -66,6 +66,7 @@ export const TextAreaResizable = (props: TextAreaResizableProps) => {
   }, [rows])
 
   const disabledCursor = disabled ? { cursor: 'not-allowed' } : {}
+  const removingOutline = Platform.OS === 'web' ? { outlineWidth: 0 } : {}
 
   return (
     <TextInput
@@ -74,6 +75,7 @@ export const TextAreaResizable = (props: TextAreaResizableProps) => {
         ...(props.style as Object),
         padding: 4,
         minHeight,
+        ...removingOutline,
         ...disabledCursor
       }}
       multiline={true}
